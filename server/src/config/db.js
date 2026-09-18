@@ -6,9 +6,6 @@ export const pool = mysql.createPool({
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "brewly_db",
-  ssl: process.env.DB_HOST?.includes("aivencloud.com")
-    ? { rejectUnauthorized: false }
-    : false, // Enables SSL automatically for Aiven, disables for local development
   waitForConnections: true,
   connectionLimit: 10,
 });
