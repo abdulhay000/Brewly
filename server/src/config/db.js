@@ -6,6 +6,9 @@ export const pool = mysql.createPool({
   user: process.env.DB_USER || "root",
   password: process.env.DB_PASSWORD || "",
   database: process.env.DB_NAME || "brewly_db",
+  ssl: process.env.DB_HOST?.includes("aivencloud.com")
+    ? { rejectUnauthorized: false }
+    : false, // Enables SSL automatically for Aiven, disables for local development
   waitForConnections: true,
   connectionLimit: 10,
 });
@@ -91,7 +94,6 @@ export async function ensureDatabaseUpdates() {
       if (!/Duplicate column/i.test(error.message)) throw error;
     }
   }
-
 
   await pool.query(`CREATE TABLE IF NOT EXISTS testimonials (
     id INT AUTO_INCREMENT PRIMARY KEY,
