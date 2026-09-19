@@ -244,19 +244,6 @@ function User() {
               aria-label="Current loyalty points">
               <span>★</span> You have <strong>{loyaltyPoints}</strong> points
             </div>
-            <button
-              className="btn1"
-              onClick={resetCart}
-              disabled={!cart.length}>
-              Reset cart
-            </button>
-            <button
-              className="btn"
-              onClick={() => setCheckoutOpen(true)}
-              disabled={!cart.length}>
-              Cart ({cart.reduce((sum, item) => sum + item.quantity, 0)}) ·{" "}
-              {currency} {total.toFixed(2)}
-            </button>
           </div>
         </div>
 
